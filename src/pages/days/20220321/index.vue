@@ -21,13 +21,21 @@ const initPos = () => {
   }
 }
 
+const resetPos = () => {
+  console.log('重置位置数据')
+}
+
+defineExpose({
+  resetPos,
+})
+
 onMounted(() => {
   initPos()
 })
 </script>
 
 <template>
-  <div w100vw flex justify-center pt100px preserve-3d class="stage">
+  <div wfull flex justify-center pt100px preserve-3d class="stage">
     <div w-600px h-600px bg-gray preserve-3d class="floor">
       <Box v-for="(p, index) in pos" :key="index" :pos="p" />
     </div>
@@ -36,7 +44,7 @@ onMounted(() => {
 
 <style>
 .stage {
-  perspective: 1000px;
+  perspective: 2000px;
 }
 .floor {
   transform: rotateX(40deg) rotateZ(40deg);
