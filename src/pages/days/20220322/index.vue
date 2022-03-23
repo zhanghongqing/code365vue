@@ -8,10 +8,8 @@ const data = reactive({
   size: 100,
 })
 
-const stageRef = ref(null)
-
 const moveBox = () => {
-  console.log('moveAllBox', stageRef.value)
+  console.log('开始移动')
 }
 
 const changeSize = (e: Event) => {
@@ -28,7 +26,7 @@ const { size } = toRefs(data)
       move
     </button>
     <input v-model="size" text-gray-9 bg-gray-2 @change="changeSize">
-    <Stage ref="stageRef" />
+    <Stage />
   </div>
 </template>
 

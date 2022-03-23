@@ -27,6 +27,7 @@ const resetPos = () => {
 
 defineExpose({
   resetPos,
+  pos,
 })
 
 onMounted(() => {
