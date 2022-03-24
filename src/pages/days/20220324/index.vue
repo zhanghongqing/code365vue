@@ -7,11 +7,25 @@ const box = useBoxStore()
 
 const data = reactive({
   pos: Array<Pos>(),
+  boxNum: 50,
   size: 100,
   rangeX: 60,
   rangeY: 0,
   rangeZ: 210,
 })
+
+const { boxNum, size, rangeX, rangeY, rangeZ, pos } = toRefs(data)
+
+const initPos = () => {
+  pos.value = []
+  while (pos.value.length < boxNum.value) {
+    let boxlen = Math.floor(600 / size.value)
+    const x = Math.floor(Math.random() * boxlen)
+    const y = Math.floor(Math.random() * boxlen)
+    const z = Math.floor(Math.random() * boxlen)
+    pos.value.push({ x, y, z })
+  }
+}
 
 const changeSize = (e: Event) => {
   let value = +(e.target as HTMLInputElement).value
@@ -19,17 +33,7 @@ const changeSize = (e: Event) => {
   else if (value < 10) value = 10
   size.value = value
   box.setBoxSize(+value)
-}
-
-const { size, rangeX, rangeY, rangeZ, pos } = toRefs(data)
-
-const initPos = () => {
-  while (pos.value.length < 50) {
-    const x = Math.floor(Math.random() * 6)
-    const y = Math.floor(Math.random() * 6)
-    const z = Math.floor(Math.random() * 6)
-    pos.value.push({ x, y, z })
-  }
+  initPos()
 }
 
 onMounted(() => {
@@ -55,9 +59,13 @@ onMounted(() => {
         <input type="range" w80px v-model="rangeZ" :min="0" :max="360" :step="1" />
         <span inline-block w35px text-right>{{rangeZ}}</span>
       </div>
-      <div w-full pb5px>
-        <span pr-10px>size</span>
+      <div w-full pb10px>
+        <span w60px pr-10px>size</span>
         <input v-model="size" text-center w50px text-gray-9 bg-gray-2 @change="changeSize" />
+      </div>
+      <div w-full pb5px>
+        <span w60px pr-10px>num</span>
+        <input v-model="boxNum" text-center w50px text-gray-9 bg-gray-2 @change="initPos" />
       </div>
     </div>
     <div w-600px h-600px preserve-3d :style="{'transform': `rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`}">
