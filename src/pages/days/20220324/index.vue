@@ -36,6 +36,14 @@ const changeSize = (e: Event) => {
   initPos()
 }
 
+const changeNum = (e: Event) => {
+  let value = +(e.target as HTMLInputElement).value
+  if (value > 200) value = 200
+  else if (value < 10) value = 10
+  boxNum.value = value
+  initPos()
+}
+
 onMounted(() => {
   initPos()
 })
@@ -60,12 +68,12 @@ onMounted(() => {
         <span inline-block w35px text-right>{{rangeZ}}</span>
       </div>
       <div w-full pb10px>
-        <span w60px pr-10px>size</span>
+        <span inline-block w60px pr-10px>size</span>
         <input v-model="size" text-center w50px text-gray-9 bg-gray-2 @change="changeSize" />
       </div>
       <div w-full pb5px>
-        <span w60px pr-10px>num</span>
-        <input v-model="boxNum" text-center w50px text-gray-9 bg-gray-2 @change="initPos" />
+        <span inline-block w60px pr-10px>num</span>
+        <input v-model="boxNum" text-center w50px text-gray-9 bg-gray-2 @change="changeNum" />
       </div>
     </div>
     <div w-600px h-600px preserve-3d :style="{'transform': `rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`}">
