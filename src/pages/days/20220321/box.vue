@@ -30,6 +30,7 @@ withDefaults(defineProps<Props>(), {
 
 <style>
 .box {
+  transition: all 1s ease;
   /* transform: translateZ(-100px); */
   transform: translateX(50px) translateZ(50px) translateY(50px);
 }

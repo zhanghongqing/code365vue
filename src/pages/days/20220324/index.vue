@@ -27,6 +27,15 @@ const initPos = () => {
   }
 }
 
+const resetPos = () => {
+  let boxlen = Math.floor(600 / size.value)
+  pos.value.forEach(p => {
+    p.x = Math.floor(Math.random() * boxlen)
+    p.y = Math.floor(Math.random() * boxlen)
+    p.z = Math.floor(Math.random() * boxlen)
+  })
+}
+
 const changeSize = (e: Event) => {
   let value = +(e.target as HTMLInputElement).value
   if (value > 100) value = 100
@@ -52,6 +61,9 @@ onMounted(() => {
 <template>
   <div wfull flex justify-center pt400px preserve-3d op100 class="stage">
     <div w140px position="fixed bottom-30px right-30px">
+      <div pb10px>
+        <button @click="resetPos">更改位置</button>
+      </div>
       <div w-full pb10px text-center lh-30px>
         <span inline-block w20px pr-5px>X:</span>
         <input type="range" w80px v-model="rangeX" :min="0" :max="360" :step="1" />
