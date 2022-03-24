@@ -60,6 +60,15 @@ const animation = () => {
   setTimeout(animation, 1000)
 }
 
+const boxClick = (p: Pos, i: number) => {
+  let boxlen = Math.floor(600 / size.value)
+  pos.value[i] = {
+    x: Math.floor(Math.random() * boxlen),
+    y: Math.floor(Math.random() * boxlen),
+    z: Math.floor(Math.random() * boxlen),
+  }
+}
+
 onMounted(() => {
   initPos()
 })
@@ -100,7 +109,7 @@ onMounted(() => {
       </div>
     </div>
     <div w-600px h-600px preserve-3d :style="{'transform': `rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`}">
-      <Box v-for="(p, index) in pos" :key="index" :pos="p" />
+      <Box @click="boxClick(p, index)" v-for="(p, index) in pos" :key="index" :pos="p" />
       <div w-full h-full position="absolute top-0 left-0" bg-op30 bg-blue class="bigFace floor" />
       <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace ceiling" />
       <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace left" />
