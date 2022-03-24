@@ -34,6 +34,9 @@ withDefaults(defineProps<Props>(), {
   /* transform: translateZ(-100px); */
   transform: translateX(50px) translateZ(50px) translateY(50px);
 }
+.box:hover .face {
+  background: blue;
+}
 .face {
   transform-origin: center center;
   /* transform: matrix3d(

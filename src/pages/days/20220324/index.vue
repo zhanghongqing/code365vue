@@ -115,6 +115,12 @@ onMounted(() => {
 .stage {
   perspective: 2000px;
 }
+.bigFace {
+  pointer-events: none;
+}
+.bigFace:hover {
+  background: red;
+}
 .bigFace.ceiling {
   /* transform: translate3d(600px, 600px, 600px); */
   transform: translate3d(0, 0, 600px);
