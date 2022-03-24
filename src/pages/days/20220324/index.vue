@@ -12,9 +12,10 @@ const data = reactive({
   rangeX: 60,
   rangeY: 0,
   rangeZ: 210,
+  isAnimating: false,
 })
 
-const { boxNum, size, rangeX, rangeY, rangeZ, pos } = toRefs(data)
+const { boxNum, size, rangeX, rangeY, rangeZ, pos, isAnimating } = toRefs(data)
 
 const initPos = () => {
   pos.value = []
@@ -53,6 +54,12 @@ const changeNum = (e: Event) => {
   initPos()
 }
 
+const animation = () => {
+  resetPos()
+  if (!isAnimating.value) return
+  setTimeout(animation, 1000)
+}
+
 onMounted(() => {
   initPos()
 })
@@ -61,6 +68,10 @@ onMounted(() => {
 <template>
   <div wfull flex justify-center pt400px preserve-3d op100 class="stage">
     <div w140px position="fixed bottom-30px right-30px">
+      <div pb10px>
+        <input type="checkbox" v-model="isAnimating" @change="animation" />
+        <span pl6px>开启动画</span>
+      </div>
       <div pb10px>
         <button @click="resetPos">更改位置</button>
       </div>
