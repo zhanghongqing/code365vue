@@ -9,10 +9,10 @@ const data = reactive({
   pos: Array<Pos>(),
   boxNum: 50,
   size: 100,
-  rangeX: 60,
+  rangeX: 50,
   rangeY: 0,
-  rangeZ: 210,
-  zoom: 90,
+  rangeZ: 40,
+  zoom: 80,
   isAnimating: false,
   actBox: {} as Pos,
 })
@@ -92,8 +92,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div wfull flex justify-center pt400px preserve-3d op100 class="stage">
-    <div w140px position="fixed bottom-30px right-30px">
+  <div w100vw h100vh flex position="fixed top-0 left-0" z-999 justify-center items-center op100 class="stage">
+    <div w140px z-999 position="fixed bottom-30px right-30px">
       <div pb10px>
         <input type="checkbox" v-model="isAnimating" @change="animation" />
         <span pl6px>开启动画</span>
@@ -130,7 +130,7 @@ onMounted(() => {
         <input v-model="boxNum" text-center w50px text-gray-9 bg-gray-2 @change="changeNum" />
       </div>
     </div>
-    <div w-600px h-600px preserve-3d :style="{'transform': `translate3d(0,0, 0) rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`, 'zoom': zoom / 100}">
+    <div class="bigBox" w-600px h-600px preserve-3d z-888 :style="{'transform': `translate3d(0,0, 0) rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`, 'zoom': zoom / 100}">
       <Box @click="boxClick(p)" v-for="(p, index) in pos" :key="index" :pos="p" :active="actBox.x === p.x && actBox.y === p.y && actBox.z === p.z" />
       <div w-full h-full position="absolute top-0 left-0" bg-op30 bg-blue class="bigFace floor" />
       <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace ceiling" />
@@ -145,6 +145,10 @@ onMounted(() => {
 <style>
 .stage {
   perspective: 2000px;
+  transition: all .2s ease;
+}
+.bigBox {
+  transform-origin: 50% 50% 300px;
 }
 .bigFace {
   pointer-events: none;
