@@ -132,12 +132,42 @@ onMounted(() => {
     </div>
     <div class="bigBox" w-600px h-600px preserve-3d z-888 :style="{'transform': `translate3d(0,0, 0) rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`, 'zoom': zoom / 100}">
       <Box @click="boxClick(p)" v-for="(p, index) in pos" :key="index" :pos="p" :active="actBox.x === p.x && actBox.y === p.y && actBox.z === p.z" />
-      <div w-full h-full position="absolute top-0 left-0" bg-op30 bg-blue class="bigFace floor" />
-      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace ceiling" />
-      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace left" />
-      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace right" />
-      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace front" />
-      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace back" />
+      <div w-full h-full position="absolute top-0 left-0" bg-op30 bg-blue class="bigFace floor">
+        <div class="arrow">
+          <div w40px h40px text-40px i-carbon-arrow-shift-down></div>
+          <div w40px h40px text-20px text-center lh-40px>下</div>
+        </div>
+      </div>
+      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace ceiling">
+        <div class="arrow">
+          <div w40px h40px text-40px i-carbon-arrow-shift-down></div>
+          <div w40px h40px text-20px text-center lh-40px>上</div>
+        </div>
+      </div>
+      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace left">
+        <div class="arrow">
+          <div w40px h40px text-40px i-carbon-arrow-shift-down></div>
+          <div w40px h40px text-20px text-center lh-40px>左</div>
+        </div>
+      </div>
+      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace right">
+        <div class="arrow">
+          <div w40px h40px text-40px i-carbon-arrow-shift-down></div>
+          <div w40px h40px text-20px text-center lh-40px>右</div>
+        </div>
+      </div>
+      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace front">
+        <div class="arrow">
+          <div w40px h40px text-40px i-carbon-arrow-shift-down></div>
+          <div w40px h40px text-20px text-center lh-40px>前</div>
+        </div>
+      </div>
+      <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace back">
+        <div class="arrow">
+          <div w40px h40px text-40px i-carbon-arrow-shift-down></div>
+          <div w40px h40px text-20px text-center lh-40px>后</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -151,14 +181,14 @@ onMounted(() => {
   transform-origin: 50% 50% 300px;
 }
 .bigFace {
+  transform-style: preserve-3d;
   pointer-events: none;
 }
-.bigFace::after {
-  content: '';
-  display: block;
-  width: 100px;
-  height: 100px;
-  background: red;
+.bigFace .arrow {
+  transform: translate3d(280px, 280px, 100px) rotateX(90deg);
+}
+.bigFace.floor .arrow {
+  transform: translate3d(280px, 280px, -100px) rotateX(90deg) rotateX(180deg);
 }
 .bigFace:hover {
   background: red;
