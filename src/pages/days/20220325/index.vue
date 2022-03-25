@@ -86,8 +86,31 @@ const boxClick = (p: Pos) => {
   actBox.value = p
 }
 
+const handleKeyDown = (e: KeyboardEvent) => {
+  if (['w', 'a', 's', 'd', 'q', 'e'].includes(e.key)) {
+    if (e.key === 'w') {
+      actBox.value.z += 1
+    } else if (e.key === 's') {
+      actBox.value.z -= 1
+    } else if (e.key === 'a') {
+      actBox.value.x -= 1
+    } else if (e.key === 'd') {
+      actBox.value.x += 1
+    } else if (e.key === 'q') {
+      actBox.value.y += 1
+    } else if (e.key === 'e') {
+      actBox.value.y -= 1
+    }
+  }
+}
+
 onMounted(() => {
   initPos()
+  window.addEventListener('keydown', handleKeyDown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeyDown)
 })
 </script>
 
