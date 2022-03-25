@@ -12,10 +12,12 @@ const data = reactive({
   rangeX: 60,
   rangeY: 0,
   rangeZ: 210,
+  zoom: 90,
   isAnimating: false,
+  actBox: {} as Pos,
 })
 
-const { boxNum, size, rangeX, rangeY, rangeZ, pos, isAnimating } = toRefs(data)
+const { boxNum, size, rangeX, rangeY, rangeZ, pos, isAnimating, actBox, zoom } = toRefs(data)
 
 const initPos = () => {
   pos.value = []
@@ -44,7 +46,7 @@ const isCreatePos = (p: Pos) => {
       isSame = true
     }
   })
-  if (isSame) console.log('有重复')
+  // if (isSame) console.log('有重复')
   return isSame
 }
 
@@ -77,11 +79,11 @@ const changeNum = (e: Event) => {
 const animation = () => {
   resetPos()
   if (!isAnimating.value) return
-  setTimeout(animation, 1000)
+  setTimeout(animation, 500)
 }
 
-const boxClick = (p: Pos, i: number) => {
-  console.log('dianji', p)
+const boxClick = (p: Pos) => {
+  actBox.value = p
 }
 
 onMounted(() => {
@@ -98,6 +100,11 @@ onMounted(() => {
       </div>
       <div pb10px>
         <button @click="resetPos">更改位置</button>
+      </div>
+      <div w-full pb10px text-center lh-30px>
+        <span inline-block w50px pr-5px>zoom:</span>
+        <input type="range" w50px v-model="zoom" :min="20" :max="200" :step="1" />
+        <span inline-block w35px text-right>{{(zoom / 100).toFixed(2)}}</span>
       </div>
       <div w-full pb10px text-center lh-30px>
         <span inline-block w20px pr-5px>X:</span>
@@ -123,8 +130,8 @@ onMounted(() => {
         <input v-model="boxNum" text-center w50px text-gray-9 bg-gray-2 @change="changeNum" />
       </div>
     </div>
-    <div w-600px h-600px preserve-3d :style="{'transform': `rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`}">
-      <Box @click="boxClick(p, index)" v-for="(p, index) in pos" :key="index" :pos="p" />
+    <div w-600px h-600px preserve-3d :style="{'transform': `translate3d(0,0, 0) rotateX(${rangeX}deg) rotateY(${rangeY}deg) rotateZ(${rangeZ}deg)`, 'zoom': zoom / 100}">
+      <Box @click="boxClick(p)" v-for="(p, index) in pos" :key="index" :pos="p" :active="actBox.x === p.x && actBox.y === p.y && actBox.z === p.z" />
       <div w-full h-full position="absolute top-0 left-0" bg-op30 bg-blue class="bigFace floor" />
       <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace ceiling" />
       <div w-full h-full position="absolute top-0 left-0" border="1px red" bg-op3 bg-blue class="bigFace left" />
@@ -141,6 +148,13 @@ onMounted(() => {
 }
 .bigFace {
   pointer-events: none;
+}
+.bigFace::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: red;
 }
 .bigFace:hover {
   background: red;
