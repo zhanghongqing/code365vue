@@ -8,6 +8,7 @@ const box = useBoxStore()
 const data = reactive({
   pos: Array<Pos>(),
   boxNum: 50,
+  opacity: 50,
   size: 100,
   rangeX: 50,
   rangeY: 0,
@@ -17,7 +18,7 @@ const data = reactive({
   actBox: {} as Pos,
 })
 
-const { boxNum, size, rangeX, rangeY, rangeZ, pos, isAnimating, actBox, zoom } = toRefs(data)
+const { boxNum, opacity, size, rangeX, rangeY, rangeZ, pos, isAnimating, actBox, zoom } = toRefs(data)
 
 const initPos = () => {
   pos.value = []
@@ -66,6 +67,12 @@ const changeSize = (e: Event) => {
   size.value = value
   box.setBoxSize(+value)
   initPos()
+}
+
+const changeOpacity = (e: Event) => {
+  let value = +(e.target as HTMLInputElement).value
+  opacity.value = value
+  box.setBoxOpacity(+value)
 }
 
 const changeNum = (e: Event) => {
@@ -128,6 +135,11 @@ onBeforeUnmount(() => {
         <span inline-block w50px pr-5px>zoom:</span>
         <input type="range" w50px v-model="zoom" :min="20" :max="200" :step="1" />
         <span inline-block w35px text-right>{{(zoom / 100).toFixed(2)}}</span>
+      </div>
+      <div w-full pb10px text-center lh-30px>
+        <span inline-block w50px pr-5px text-14px>透明度:</span>
+        <input type="range" @input="changeOpacity" w50px v-model="opacity" :min="0" :max="100" :step="1" />
+        <span inline-block w35px text-right>{{(opacity / 100).toFixed(2)}}</span>
       </div>
       <div w-full pb10px text-center lh-30px>
         <span inline-block w20px pr-5px>X:</span>

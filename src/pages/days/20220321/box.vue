@@ -20,12 +20,12 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div w0 h0 bg-red relative preserve-3d :class="{'box': true, 'active': active}" :style="{'transform': `translateX(${box.boxSize * pos.x + box.boxSize / 2}px) translateZ(${box.boxSize * pos.z + box.boxSize / 2}px) translateY(${box.boxSize * pos.y + box.boxSize / 2}px)`}">
-    <div preserve-3d class="face top" bg-red op30 absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'transform': `translateZ(${box.boxSize / 2}px) rotate(0deg)`}" />
-    <div preserve-3d class="face bottom" bg-blue op30 absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'transform': `translateZ(-${box.boxSize / 2}px) rotate(0deg)`}" />
-    <div preserve-3d class="face left" bg-green op30 absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'transform': `translateX(-${box.boxSize / 2}px) rotateY(90deg)`}" />
-    <div preserve-3d class="face right" bg-yellow op30 absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'transform': `translateX(${box.boxSize / 2}px) rotateY(90deg)`}" />
-    <div preserve-3d class="face front" bg-pink op30 absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'transform': `translateY(${box.boxSize / 2}px) rotateX(90deg)`}" />
-    <div preserve-3d class="face back" bg-purple op30 absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'transform': `translateY(-${box.boxSize / 2}px) rotateX(90deg)`}" />
+    <div preserve-3d class="face top" op-30 bg-red absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'opacity': box.boxOpacity / 100, 'transform': `translateZ(${box.boxSize / 2}px) rotate(0deg)`}" />
+    <div preserve-3d class="face bottom" op-30 bg-blue absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'opacity': box.boxOpacity / 100, 'transform': `translateZ(-${box.boxSize / 2}px) rotate(0deg)`}" />
+    <div preserve-3d class="face left" bg-green absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'opacity': box.boxOpacity / 100, 'transform': `translateX(-${box.boxSize / 2}px) rotateY(90deg)`}" />
+    <div preserve-3d class="face right" bg-yellow absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'opacity': box.boxOpacity / 100, 'transform': `translateX(${box.boxSize / 2}px) rotateY(90deg)`}" />
+    <div preserve-3d class="face front" bg-pink absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'opacity': box.boxOpacity / 100, 'transform': `translateY(${box.boxSize / 2}px) rotateX(90deg)`}" />
+    <div preserve-3d class="face back" bg-purple absolute :style="{'width': `${box.boxSize}px`, 'height': `${box.boxSize}px`, 'top': `-${box.boxSize / 2}px`, 'left': `-${box.boxSize / 2}px`, 'opacity': box.boxOpacity / 100, 'transform': `translateY(-${box.boxSize / 2}px) rotateX(90deg)`}" />
   </div>
 </template>
 
