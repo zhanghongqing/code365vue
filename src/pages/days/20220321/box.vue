@@ -50,4 +50,27 @@ withDefaults(defineProps<Props>(), {
     0,0,0,1
   ); */
 }
+.face::before {
+  content: '前Q';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.face.back::before {
+  content: '后E';
+}
+.face.top::before {
+  content: '上W';
+}
+.face.bottom::before {
+  content: '下S';
+}
+.face.left::before {
+  content: '左A';
+}
+.face.right::before {
+  content: '右D';
+}
 </style>

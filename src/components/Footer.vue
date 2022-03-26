@@ -12,7 +12,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <nav text-xl mt-6 position="fixed bottom-20px">
+  <nav text-xl mt-6 position="fixed bottom-20px" z-1000>
     <!-- <router-link class="icon-btn mx-2" to="/" :title="t('button.home')">
       <div i-carbon-campsite />
     </router-link> -->
