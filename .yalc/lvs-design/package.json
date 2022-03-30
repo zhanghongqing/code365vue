@@ -1,0 +1,29 @@
+{
+  "name": "lvs-design",
+  "private": false,
+  "version": "0.0.2",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/my-lib.umd.js",
+  "module": "./dist/my-lib.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.es.js",
+      "require": "./dist/my-lib.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.25"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zhanghongqing/lvs-design.git"
+  },
+  "yalcSig": "d9ebbbc2c0cf6f94defd007ff44d208a"
+}

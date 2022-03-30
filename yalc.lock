@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "lvs-design": {
+      "signature": "d9ebbbc2c0cf6f94defd007ff44d208a",
+      "file": true
+    }
+  }
+}
